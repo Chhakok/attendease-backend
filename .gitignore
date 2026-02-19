@@ -1,0 +1,12 @@
+# Local data and secrets
+.env
+attendance.db
+ngrok.exe
+
+# Python junk
+venv/
+__pycache__/
+*.pyc
+
+# IDE settings
+.idea/
