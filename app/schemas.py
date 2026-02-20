@@ -4,7 +4,8 @@ from typing import Optional, List
 
 # --- History & Attendance ---
 class HistoryBase(BaseModel):
-    type: str
+    # type: str
+    type: Optional[str] = None
     date: str
     title: str
     subtitle: str

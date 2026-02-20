@@ -30,8 +30,20 @@ def submit_leave_request(
         db: Session = Depends(database.get_db),
         current_user: models.User = Depends(get_current_user)
 ):
-    item.type = "Leave"
-    return crud.create_attendance(db=db, item=item, user_id=current_user.id)
+    # 1. Convert Pydantic model to a Python dictionary
+    item_data = item.model_dump()
+
+    # 2. Overwrite the 'type' and add the 'user_id' inside the dictionary
+    item_data["type"] = "Leave"
+    item_data["user_id"] = current_user.id
+
+    # 3. Create the database object cleanly
+    db_item = models.HistoryItem(**item_data)
+
+    db.add(db_item)
+    db.commit()
+    db.refresh(db_item)
+    return db_item
 
 @router.patch("/approve/{item_id}", response_model=schemas.HistoryResponse)
 def update_leave_status(
