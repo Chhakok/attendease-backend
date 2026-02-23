@@ -13,7 +13,8 @@ class User(Base):
     # Corrected: Use 'phone_number' to match Flutter's 'phoneNumber' JSON logic
     phone_number = Column(String)
     # Corrected: Use 'avatar_url' to match typical Flutter naming
-    avatar_url = Column(String, default="assets/images/profile.jpg")
+    avatar_url = Column(String, nullable=True)
+    # avatar_url = Column(String, default="assets/images/profile.jpg")
     # ADD THIS: Role can be 'employee' or 'admin'
     role = Column(String, default="employee")
     history = relationship("HistoryItem", back_populates="owner")

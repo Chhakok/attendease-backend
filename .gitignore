@@ -1,12 +1,25 @@
 # Local data and secrets
+# Environments
 .env
+venv/
+env/
 attendance.db
 ngrok.exe
 
 # Python junk
-venv/
+
+
+# Python Cache
 __pycache__/
 *.pyc
+*.pyo
 
 # IDE settings
 .idea/
+
+# Database (If you are using a local SQLite file, ignore it! If using Postgres URL, you are fine)
+*.sqlite3
+*.db
+
+# OS Files
+.DS_Store

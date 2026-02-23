@@ -34,6 +34,7 @@ class UserBase(BaseModel):
     role: str
     # Syncs DB 'phone_number' with Flutter 'phoneNumber'
     phone_number: str = Field(..., alias="phoneNumber")
+    avatar_url: Optional[str] = None
 
 
 class UserResponse(UserBase):
