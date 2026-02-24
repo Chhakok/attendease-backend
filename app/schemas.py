@@ -40,7 +40,8 @@ class UserBase(BaseModel):
 class UserResponse(UserBase):
     id: int
     # Syncs DB 'avatar_url' with Flutter 'avatarUrl'
-    avatar_url: str = Field("assets/images/profile.jpg", alias="avatarUrl")
+    # avatar_url: str = Field("assets/images/profile.jpg", alias="avatarUrl")
+    avatar_url: Optional[str] = Field(default="assets/images/profile.jpg", alias="avatarUrl")
 
     class Config:
         from_attributes = True
