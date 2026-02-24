@@ -28,6 +28,11 @@ def get_leave_balances(
 
     # 3. Mathematically deduct the days they have already used
     for leave in past_leaves:
+
+        # CRITICAL FIX: Ignore rejected leaves. This naturally "refunds" the balance!
+        if leave.status == "Rejected":
+            continue
+
         # The title looks like "Annual Leave", so we strip the word " Leave" to get "Annual"
         leave_type = leave.title.replace(" Leave", "")
 
