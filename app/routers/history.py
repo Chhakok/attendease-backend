@@ -3,6 +3,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from .. import database, models, schemas
 from .auth import get_current_user
+from sqlalchemy import desc
 
 router = APIRouter(prefix="/history", tags=["Unified History"])
 
@@ -15,5 +16,6 @@ def get_all_activity(
 ):
     return db.query(models.HistoryItem).filter(
         models.HistoryItem.user_id == current_user.id
-    ).order_by(models.HistoryItem.date.desc()).limit(limit).all()
+    ).order_by(models.HistoryItem.id.desc()).limit(limit).all()
+
 
